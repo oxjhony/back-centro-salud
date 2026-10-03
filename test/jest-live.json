@@ -2,12 +2,10 @@
   "moduleFileExtensions": ["js", "json", "ts"],
   "rootDir": ".",
   "testEnvironment": "node",
-  "testRegex": ".e2e-spec.ts$",
+  "testRegex": ".live-spec.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   },
-  "globalSetup": "<rootDir>/support/global-setup.ts",
-  "setupFiles": ["<rootDir>/support/env.ts"],
-  "testTimeout": 30000,
+  "testTimeout": 60000,
   "maxWorkers": 1
 }

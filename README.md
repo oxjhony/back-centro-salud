@@ -77,6 +77,8 @@ cp .env.example .env
 | `MOODLE_BASE_URL` | URL de la instancia de Moodle | `http://127.0.0.1:8090` |
 | `MOODLE_WS_TOKEN` | Token de servicio web, solo lectura | — |
 | `MOODLE_TIMEOUT_MS` | Tiempo máximo de espera al LMS | `5000` |
+| `STORAGE_DIR` | Carpeta de los archivos de los recursos (desarrollo) | `storage` |
+| `RESOURCE_MAX_MB` | Tamaño máximo de cada archivo cargado | `20` |
 | `SMTP_HOST` | Servidor de correo | `localhost` |
 | `SMTP_PORT` | Puerto SMTP | `1025` |
 
@@ -253,7 +255,7 @@ Una solicitud se puede integrar cuando:
 | Especificación Ejecutable v1 | `Entregables/Semana-02/` |
 | Project Charter | `Entregables/Semana-02/` |
 | Product Backlog | `Entregables/Semana-02/` |
-| Modelo de datos | `documentos/centro_virtual_salud_publica_modelo_datos_v2.json` |
+| Modelo de datos | `documentos/centro_virtual_salud_publica_modelo_datosV3.json` (v2 revisado; ver `changesFromV2`) |
 | Guía de despliegue | `documentos/despliegue-azure.md` |
 | Playbook de orquestación de IA | `Entregables/Semana-04/` |
 
