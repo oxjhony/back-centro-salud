@@ -12,6 +12,7 @@ import { PgResourceRepository } from './infrastructure/database/repositories/pg-
 import { PgSearchIndex } from './infrastructure/database/repositories/pg-search.index';
 import { PgTaxonomyRepository } from './infrastructure/database/repositories/pg-taxonomy.repository';
 import { PgUserRepository } from './infrastructure/database/repositories/pg-user.repository';
+import { BULK_ACCOUNTS } from './infrastructure/identity/bulk-accounts';
 import { DEV_ACCOUNTS } from './infrastructure/identity/dev-accounts';
 import { LocalIdentityProvider } from './infrastructure/identity/local-identity.provider';
 import { MoodleWsGateway } from './infrastructure/moodle/moodle-ws.gateway';
@@ -132,7 +133,7 @@ class ConfigModule {}
     {
       provide: IDENTITY_PROVIDER,
       inject: [APP_CONFIG],
-      useFactory: (config: AppConfig) => new LocalIdentityProvider(DEV_ACCOUNTS, config.identity.localPassword),
+      useFactory: (config: AppConfig) => new LocalIdentityProvider([...DEV_ACCOUNTS, ...BULK_ACCOUNTS], config.identity.localPassword),
     },
     {
       provide: MOODLE_GATEWAY,

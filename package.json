@@ -22,7 +22,8 @@
     "migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/infrastructure/database/data-source.ts",
     "migration:show": "typeorm-ts-node-commonjs migration:show -d src/infrastructure/database/data-source.ts",
     "seed": "ts-node src/infrastructure/database/seed/seed.ts",
-    "test:live": "jest --config ./test/jest-live.json --runInBand"
+    "test:live": "jest --config ./test/jest-live.json --runInBand",
+    "seed:bulk": "ts-node src/infrastructure/database/seed/seed-bulk.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",

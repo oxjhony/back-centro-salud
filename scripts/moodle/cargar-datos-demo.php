@@ -70,11 +70,17 @@ foreach (CVSP_DEMO_CATALOG as $categoryname => $courses) {
         $existing = $DB->get_field('course', 'id', ['shortname' => $shortname]);
         if ($existing) {
             $courseids[$shortname] = (int) $existing;
+            // El idnumber es la clave con la que la plataforma enlaza su ficha: convencion cvsp-<nombre corto>.
+            if (trim((string) $DB->get_field('course', 'idnumber', ['id' => $existing])) === '') {
+                $DB->set_field('course', 'idnumber', "cvsp-$shortname", ['id' => $existing]);
+                $log("idnumber asignado: cvsp-$shortname");
+            }
             continue;
         }
         $course = create_course((object) [
             'fullname' => $fullname,
             'shortname' => $shortname,
+            'idnumber' => "cvsp-$shortname",
             'category' => $categoryid,
             'summary' => $summary,
             'summaryformat' => FORMAT_MOODLE,
