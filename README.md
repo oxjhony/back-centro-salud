@@ -68,7 +68,8 @@ cp .env.example .env
 | Variable | Descripción | Ejemplo |
 |---|---|---|
 | `PORT` | Puerto de la API | `3000` |
-| `DATABASE_URL` | Cadena de conexión a PostgreSQL | `postgresql://cvsp:cvsp@localhost:5432/cvsp` |
+| `DATABASE_URL` | Cadena de conexión a PostgreSQL (rol de la aplicación) | `postgresql://cvsp_app:cvsp_app_dev@127.0.0.1:5433/cvsp` |
+| `DATABASE_MIGRATION_URL` | Conexión del rol propietario, para migraciones y semilla | `postgresql://cvsp_owner:cvsp_owner_dev@127.0.0.1:5433/cvsp` |
 | `STORAGE_ENDPOINT` | Endpoint del almacenamiento de objetos | `http://localhost:9000` |
 | `STORAGE_BUCKET` | Contenedor de recursos | `recursos` |
 | `OIDC_ISSUER_URL` | Emisor del proveedor de identidad | `http://localhost:8080/realms/cvsp` |
@@ -88,6 +89,12 @@ cp .env.example .env
 ---
 
 ## Ejecución
+
+### Entorno local de la raíz del proyecto
+
+`preparar-entorno.bat` (una vez) y `iniciar-todo.bat` levantan una única instancia de PostgreSQL
+(puerto 5433) que aloja `cvsp` (esta API) y `moodle` (el Moodle de desarrollo), más Moodle, la API y
+el frontend. No hay otro motor de base de datos.
 
 ### Servicios de apoyo
 
