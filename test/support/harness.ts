@@ -86,8 +86,13 @@ export async function createHarness(): Promise<Harness> {
   const owner = await new DataSource({ type: 'postgres', url: process.env.DATABASE_MIGRATION_URL }).initialize();
 
   // Datos limpios en cada archivo de pruebas. Roles, permisos y transiciones no se tocan:
-  // son datos de referencia que crean las migraciones.
-  await owner.query(`TRUNCATE users, taxonomy_terms, audit_logs, integration_logs CASCADE`);
+  // son datos de referencia que crean las migraciones. CASCADE solo alcanza a las tablas que
+  // apuntan a las nombradas: las que no tienen clave foranea hacia usuarios ni terminos
+  // (initiatives guarda su autoria en initiative_authors) se nombran aparte.
+  await owner.query(
+    `TRUNCATE users, taxonomy_terms, initiatives, actors, consultations, aggregated_metrics,
+              audit_logs, integration_logs CASCADE`,
+  );
 
   const userIds = {} as Record<Account, string>;
   for (const account of Object.keys(ACCOUNTS) as Account[]) {
